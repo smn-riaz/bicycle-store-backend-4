@@ -13,7 +13,8 @@ async function main() {
       console.log(
         `BicycleStore is listening at http://localhost:${config.port}`
       );
-    });
+    })
+
   } catch (err) {
     console.log(err);
   }

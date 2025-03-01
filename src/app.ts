@@ -12,7 +12,9 @@ app.use(cookieParser())
 
 app.use(cors({origin:["http://localhost:5173"],credentials:true}))
 
-
+app.get('/',(req,res) => {
+    res.send("Hello world!")
+})
 
 app.use('/api', router)
 
