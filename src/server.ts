@@ -11,7 +11,7 @@ async function main() {
 
     server = app.listen(config.port, () => {
       console.log(
-        `🚴‍♀️BicycleStore is listening at http://localhost:${config.port}`
+        `BicycleStore is listening at http://localhost:${config.port}`
       );
     });
   } catch (err) {

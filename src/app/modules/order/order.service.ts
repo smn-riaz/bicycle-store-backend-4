@@ -1,3 +1,4 @@
+import { orderStatus } from './order.constant';
 import httpStatus from 'http-status';
 import QueryBuilder from '../../builder/QueryBuilder';
 import  AppError  from '../../errors/AppError';
@@ -5,7 +6,7 @@ import { TOrder } from './order.interface';
 import { Order } from './order.model';
 import { User } from '../user/user.model';
 import Product from '../product/product.model';
-import { JwtPayload } from 'jsonwebtoken';
+
 // import { orderUtils } from './order.utils';
 
 
@@ -81,7 +82,7 @@ const createOrderIntoDB = async (payload: TOrder,
 
 const getAllOrdersFromDB = async (query: Record<string, unknown>) => {
   const orderQuery = new QueryBuilder(
-    Order.find(),
+    Order.find().populate('user').populate('product') ,
     query
   )
     .filter()
@@ -93,9 +94,7 @@ const getAllOrdersFromDB = async (query: Record<string, unknown>) => {
 };
 
 
-const getUserOrdersFromDB = async (user:JwtPayload) => {
-
-  const {id} = user
+const getUserOrdersFromDB = async (id:string) => {
 
   const result = await Order.find({user:id}).populate('product');
 
@@ -121,16 +120,29 @@ const getSpecificOrderFromDB = async (id: string) => {
 
 
 const updateOrderIntoDB = async (id: string, payload: Partial<TOrder>) => {
-  if (!(await Order.findById(id))) {
+
+  const orderInfo = (await Order.findById(id))
+
+  if (!orderInfo) {
     throw new AppError(httpStatus.NOT_FOUND, 'There is no User found');
   }
+
+
+  if(orderInfo.status === orderStatus.CANCELLED){
+    throw new AppError(httpStatus.NOT_FOUND, 'Order is cancelled');
+  }
+  
+  if( orderInfo.status === orderStatus.DELIVERED){
+    throw new AppError(httpStatus.NOT_FOUND, 'Order is delivered');
+  }
+
 
   const result = await Order.findByIdAndUpdate(id, payload, {
     new: true,
     runValidators: true,
   });
 
-  return result;
+return result
 };
 
 

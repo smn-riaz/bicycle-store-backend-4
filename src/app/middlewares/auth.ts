@@ -10,6 +10,9 @@ import { TUserRole } from '../modules/user/user.interface';
 import { User } from '../modules/user/user.model';
 import AppError from '../errors/AppError';
 
+
+
+
 const auth = (...requiredRoles: TUserRole[]) => {
   return catchAsync(async (req: Request, res: Response, next: NextFunction) => {
     const accessToken = req.headers.authorization;
@@ -20,11 +23,19 @@ const auth = (...requiredRoles: TUserRole[]) => {
       throw new AppError(httpStatus.UNAUTHORIZED, 'You are not authorized!');
     }
 
-    // checking if the given token is valid
-    const decoded = jwt.verify(
-      accessToken,
-      config.jwt_access_secret as string,
-    ) as JwtPayload;
+    let decoded;
+
+    try {
+       decoded = jwt.verify(
+        accessToken,
+        config.jwt_access_secret as string,
+      ) as JwtPayload;
+    } catch (error) {
+      throw new AppError(httpStatus.UNAUTHORIZED, "Unauthorized")
+    }
+
+   
+
 
 
     const { id,role, email,iat} = decoded;

@@ -23,8 +23,8 @@ sendResponse(res, {
 
 
 const getAllOrders: RequestHandler = catchAsync(async (req, res) => {
-        const result = await orderServices.getAllOrdersFromDB(req.query);
-      
+
+        const result = await orderServices.getAllOrdersFromDB(req.query)    
         sendResponse(res, {
           success: true,
           statusCode: httpStatus.OK,
@@ -38,7 +38,10 @@ const getAllOrders: RequestHandler = catchAsync(async (req, res) => {
 
 const getUserOrders: RequestHandler = catchAsync(async (req, res) => {
 
-        const result = await orderServices.getUserOrdersFromDB(req.user);
+  const {id} = req.params
+
+        const result = await orderServices.getUserOrdersFromDB(id);
+        console.log(result);
       
         sendResponse(res, {
           success: true,

@@ -12,7 +12,7 @@ router.get('/', auth(USER_ROLE.admin), UserController.getAllUsers)
 
 router.post('/create-user',validateRequest(UserValidation.createUserValidationSchema), UserController.createUser)
 
-router.get('/me',auth( USER_ROLE.user, USER_ROLE.admin), UserController.getSpecificUser)
+router.get('/:id',auth( USER_ROLE.user), UserController.getSpecificUser)
 
 
 

@@ -4,7 +4,6 @@ import  AppError  from "../../errors/AppError"
 import { TUser } from "./user.interface"
 import { User } from "./user.model"
 import QueryBuilder from '../../builder/QueryBuilder';
-import { JwtPayload } from 'jsonwebtoken';
 
 
 
@@ -40,9 +39,7 @@ const getAllUsers = async(query:Record<string,unknown>) => {
 }
 
 
-const getSpecificUser = async(user:JwtPayload) => {
-
-    const {id, role} = user
+const getSpecificUser = async(id:string) => {
 
     const result = await User.findById(id)
 
@@ -50,7 +47,7 @@ const getSpecificUser = async(user:JwtPayload) => {
         throw new AppError(httpStatus.NOT_FOUND, "There is no User found")
     }
 
-    if(role !== result.role){
+    if(result.role !== "user"){
         throw new AppError(httpStatus.NOT_FOUND, "There is no User found")
     }
 
@@ -74,12 +71,14 @@ const deactivateUser = async(id:string) => {
     }
     
     if(!(isUserExists?.isActivated)) {
-        throw new AppError(httpStatus.NOT_FOUND,'This user is already Deactivated !')
+        await User.findByIdAndUpdate(id,{isActivated:true},{new:true})
     }
 
-    const result = await User.findByIdAndUpdate(id,{isActivated:false},{new:true})
-   
-    return result
+    if((isUserExists?.isActivated)) {
+        await User.findByIdAndUpdate(id,{isActivated:false},{new:true})
+    }
+
+    
 }
 
 

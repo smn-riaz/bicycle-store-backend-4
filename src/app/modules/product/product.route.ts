@@ -22,12 +22,11 @@ router.post(
 );
 
 
-router.get('/', auth(USER_ROLE.admin), productController.getAllProducts);
+router.get('/', productController.getAllProducts);
 
 
 router.get(
   '/:productId',
-  auth(USER_ROLE.admin, USER_ROLE.user),
   productController.getSpecificProduct
 );
 

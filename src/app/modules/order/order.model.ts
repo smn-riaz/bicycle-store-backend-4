@@ -31,7 +31,7 @@ totalPrice:{type:Number, required:[true, "Please enter the total price"],
 },
 status:{
   type:String,
-  enum:["pending" , "shipped" , "delivered" , "canceled"],
+  enum:["pending" , "shipped" , "delivered" , "cancelled"],
   default:"pending"
 }
 })

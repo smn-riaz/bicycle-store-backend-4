@@ -52,6 +52,7 @@ const getSpecificProduct: RequestHandler = catchAsync(async (req, res) => {
 const updateProduct: RequestHandler = catchAsync(async (req, res) => {
   const { productId } = req.params;
 
+
   const result = await ProductServices.updateProductIntoDB(productId, req.body);
 
   sendResponse(res, {

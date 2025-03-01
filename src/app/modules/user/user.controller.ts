@@ -35,7 +35,9 @@ const getAllUsers: RequestHandler = catchAsync(async (req, res) => {
 
 const getSpecificUser: RequestHandler = catchAsync(async (req, res) => {
 
-  const result = await UserServices.getSpecificUser(req.user);
+  const {id} = req.params
+
+  const result = await UserServices.getSpecificUser(id);
 
   sendResponse(res, {
     success: true,
@@ -54,15 +56,14 @@ const getSpecificUser: RequestHandler = catchAsync(async (req, res) => {
 const deactivateUser: RequestHandler = catchAsync(async (req, res) => {
   const { userId } = req.params;
 
- const user = await UserServices.deactivateUser(userId)
+  await UserServices.deactivateUser(userId)
 
- const userInfo = {name: user?.name, email: user?.email, role: user?.role, isActivated: user?.isActivated}
 
   sendResponse(res, {
     success: true,
     statusCode: httpStatus.OK,
     message: 'User is deactivated successfully',
-    data: userInfo,
+    data: null,
   });
 });
 
