@@ -20,7 +20,9 @@ const createProduct: RequestHandler = catchAsync(async (req, res) => {
 
 
 const getAllProducts: RequestHandler = catchAsync(async (req, res) => {
+
   const result = await ProductServices.getAllProductsFromDB(req.query);
+  console.log(req.query);
 
   sendResponse(res, {
     success: true,

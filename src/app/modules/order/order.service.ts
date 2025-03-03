@@ -44,12 +44,8 @@ const createOrderIntoDB = async (payload: TOrder,
     await Product.findByIdAndUpdate(
       product,
       [
-        {
-          $set: {
-            quantity: { $subtract: ['$quantity', quantity] },
-            inStock: {
-              $gt: [{ $subtract: ['$quantity', quantity] }, 0],
-            },
+        {$set: {quantity: { $subtract: ['$quantity', quantity] },inStock: { $gt: [{ $subtract: ['$quantity', quantity] }, 0],
+},
           },
         },
       ],
@@ -60,21 +56,20 @@ const createOrderIntoDB = async (payload: TOrder,
 
 
   // payment integration
-  // const shurjopayPayload = {
-  //   amount:result.totalPrice,
-  //   order_id: result._id,
-  //   currency:'BDT',
-  //   customer_name:isUserExist.name,
-  //   customer_address:"Dhaka",
-  //   customer_phone:"017777777",
-  //   customer_city:"Old Dhaka",
-  //   client_ip
-  // }
+//   const shurjopayPayload = {
+//     amount:result.totalPrice,
+//     order_id: result._id,
+//     currency:'BDT',
+//     customer_name:isUserExist.name,
+//     customer_address:"Dhaka",
+//     customer_phone:"017777777",
+//     customer_city:"Old Dhaka",
+//     client_ip
+//   }
 
 //  const payment = await orderUtils.makePayment(shurjopayPayload)
 
   return {result, 
-    // payment
   };
 };
 

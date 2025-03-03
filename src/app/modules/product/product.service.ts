@@ -8,6 +8,7 @@ import Product from "./product.model"
 import { sendImageToCloudinary } from '../../utils/sendImageToCloudinary';
 import { imageName } from '../../constant/imageName';
 import AppError from '../../errors/AppError';
+import { productSearchableFields } from './product.constant';
 
 
 const createProductIntoDB = async(file:any, payload:TProduct) => {
@@ -29,7 +30,9 @@ payload.image = secure_url
 const getAllProductsFromDB = async(query:Record<string,unknown>) => {
     
     const productQuery = new QueryBuilder(Product.find() 
-    ,query).filter().sort().paginate()
+    ,query)
+    .search(productSearchableFields)
+    .filter()
 
     const result = productQuery.modelQuery
     return result
