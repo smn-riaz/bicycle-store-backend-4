@@ -47,6 +47,13 @@
 <li>Mongoose</li>
 
 
-<br><br>
+<br><be>
+<h2>Instructions on setting up the project locally.</h2>
+<li>Necessary to have some apps. such as node, NPM/Yarn, MongoDB, postman etc. </li>
+<li>Clone/download the project from GitHub </li>
+<li>Install dependencies (npm install) </li>
+<li>Set Environment variable, run project</li>
+<li>Check correct API and test the activity of the project</li>
+
 
 
