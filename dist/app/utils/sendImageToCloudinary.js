@@ -27,9 +27,6 @@ const sendImageToCloudinary = (imageName, path) => {
                 if (err) {
                     reject(err);
                 }
-                else {
-                    console.log("File is deleted");
-                }
             });
         });
     });

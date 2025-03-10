@@ -62,15 +62,13 @@ const globalErrorHandler = (err, req, res, next) => {
             },
         ];
     }
-    // Ultimate response, but don't return from here
     res.status(statusCode).json({
         success: false,
         message,
         errorSources,
-        err,
+        error: err,
         stack: config_1.default.node_dev === 'development' ? err === null || err === void 0 ? void 0 : err.stack : null,
     });
-    // No need to return anything here, the response is already sent
     next();
 };
 exports.default = globalErrorHandler;

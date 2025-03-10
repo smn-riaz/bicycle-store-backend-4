@@ -8,6 +8,7 @@ const createProduct: RequestHandler = catchAsync(async (req, res) => {
 
   const result = await ProductServices.createProductIntoDB(req.file, req.body);
 
+
   sendResponse(res, {
     success: true,
     statusCode: httpStatus.OK,
