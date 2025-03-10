@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { orderStatus } from './order.constant';
 import httpStatus from 'http-status';
 import QueryBuilder from '../../builder/QueryBuilder';
@@ -7,11 +8,9 @@ import { Order } from './order.model';
 import { User } from '../user/user.model';
 import Product from '../product/product.model';
 
-// import { orderUtils } from './order.utils';
 
 
-const createOrderIntoDB = async (payload: TOrder,
-  // client_ip:string
+const createOrderIntoDB = async (payload: TOrder
 ) => {
   const { user, product, quantity } = payload;
 
@@ -55,21 +54,9 @@ const createOrderIntoDB = async (payload: TOrder,
   }
 
 
-  // payment integration
-//   const shurjopayPayload = {
-//     amount:result.totalPrice,
-//     order_id: result._id,
-//     currency:'BDT',
-//     customer_name:isUserExist.name,
-//     customer_address:"Dhaka",
-//     customer_phone:"017777777",
-//     customer_city:"Old Dhaka",
-//     client_ip
-//   }
 
-//  const payment = await orderUtils.makePayment(shurjopayPayload)
 
-  return {result, 
+  return {result
   };
 };
 
@@ -81,8 +68,6 @@ const getAllOrdersFromDB = async (query: Record<string, unknown>) => {
     query
   )
     .filter()
-    .sort()
-    .paginate();
 
   const result = orderQuery.modelQuery;
   return result;
@@ -151,13 +136,17 @@ const deleteOrderFromDB = async (id: string) => {
   return result;
 };
 
+
+
+
 export const orderServices = {
   createOrderIntoDB,
   updateOrderIntoDB,
   deleteOrderFromDB,
   getAllOrdersFromDB,
   getSpecificOrderFromDB,
-  getUserOrdersFromDB
+  getUserOrdersFromDB,
+
 };
 
 export const OrderServices = { createOrderIntoDB };

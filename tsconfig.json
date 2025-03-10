@@ -108,7 +108,7 @@
     "skipLibCheck": true /* Skip type checking all .d.ts files. */
     
   },
-  "files": ["./src/app/interface/index.d.ts"],
+  "files": ["./src/app/interface/index.d.ts", "./src/app/interface/surjopay.d.ts"],
   "include": ["src", "index.d.ts"],
   "exclude": ["node_modules","dist"]
 }

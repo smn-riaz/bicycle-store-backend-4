@@ -6,8 +6,7 @@ import httpStatus from 'http-status'
 
 const createOrder:RequestHandler = catchAsync(async(req,res) => {
 
- const result = await OrderServices.createOrderIntoDB(req.body,
-  // req.ip
+ const result = await OrderServices.createOrderIntoDB(req.body
 )
 
 sendResponse(res, {
@@ -101,8 +100,12 @@ const deleteOrder: RequestHandler = catchAsync(async (req, res) => {
       });
 
 
+     
+
+
 
 
 export const OrderControllers = {
-        createOrder,updateOrder,deleteOrder,getAllOrders,getSpecificOrder, getUserOrders
+        createOrder,updateOrder,deleteOrder,getAllOrders,getSpecificOrder, getUserOrders, 
+       
 }

@@ -30,7 +30,7 @@ const getAllUsers = async(query:Record<string,unknown>) => {
     
     const userQuery = new QueryBuilder(User.find(
         // {isActivated:true}
-    ),query).filter().sort().paginate()
+    ),query).filter()
 
     const result = await userQuery.modelQuery
 
