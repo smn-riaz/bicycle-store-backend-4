@@ -77,5 +77,5 @@ const deleteOrder = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, vo
     });
 }));
 exports.OrderControllers = {
-    createOrder, updateOrder, deleteOrder, getAllOrders, getSpecificOrder, getUserOrders
+    createOrder, updateOrder, deleteOrder, getAllOrders, getSpecificOrder, getUserOrders,
 };

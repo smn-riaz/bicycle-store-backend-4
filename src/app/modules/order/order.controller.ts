@@ -40,7 +40,7 @@ const getUserOrders: RequestHandler = catchAsync(async (req, res) => {
   const {id} = req.params
 
         const result = await orderServices.getUserOrdersFromDB(id);
-        console.log(result);
+   
       
         sendResponse(res, {
           success: true,

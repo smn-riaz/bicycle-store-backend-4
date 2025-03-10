@@ -28,7 +28,7 @@ const createUser = (payload) => __awaiter(void 0, void 0, void 0, function* () {
 const getAllUsers = (query) => __awaiter(void 0, void 0, void 0, function* () {
     const userQuery = new QueryBuilder_1.default(user_model_1.User.find(
     // {isActivated:true}
-    ), query).filter().sort().paginate();
+    ), query).filter();
     const result = yield userQuery.modelQuery;
     return result;
 });

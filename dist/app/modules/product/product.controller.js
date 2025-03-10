@@ -28,6 +28,7 @@ const createProduct = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, 
 }));
 const getAllProducts = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const result = yield product_service_1.ProductServices.getAllProductsFromDB(req.query);
+    console.log(req.query);
     (0, sendResponse_1.default)(res, {
         success: true,
         statusCode: http_status_1.default.OK,

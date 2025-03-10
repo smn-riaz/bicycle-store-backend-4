@@ -10,10 +10,14 @@ app.use(express.json())
 
 app.use(cookieParser())
 
-app.use(cors({origin:["http://localhost:5173"],credentials:true}))
+app.use(cors({
+    origin:["https://bicycle-store-assignment4-client.vercel.app","https://bicycle-store-assignment4-client-9imfbmxf9-smnriazs-projects.vercel.app","http://localhost:5173"],
+    credentials:true,
+}))
+
 
 app.get('/',(req,res) => {
-    res.send("Hello world!")
+    res.send("Hello world !")
 })
 
 app.use('/api', router)

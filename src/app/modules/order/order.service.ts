@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+ 
 import { orderStatus } from './order.constant';
 import httpStatus from 'http-status';
 import QueryBuilder from '../../builder/QueryBuilder';

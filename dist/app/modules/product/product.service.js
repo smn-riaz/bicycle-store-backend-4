@@ -20,6 +20,7 @@ const product_model_1 = __importDefault(require("./product.model"));
 const sendImageToCloudinary_1 = require("../../utils/sendImageToCloudinary");
 const imageName_1 = require("../../constant/imageName");
 const AppError_1 = __importDefault(require("../../errors/AppError"));
+const product_constant_1 = require("./product.constant");
 const createProductIntoDB = (file, payload) => __awaiter(void 0, void 0, void 0, function* () {
     const imgName = `${(0, imageName_1.imageName)()}${payload.name.replace(/\s/g, '')}`;
     const path = file === null || file === void 0 ? void 0 : file.path;
@@ -29,7 +30,9 @@ const createProductIntoDB = (file, payload) => __awaiter(void 0, void 0, void 0,
     return result;
 });
 const getAllProductsFromDB = (query) => __awaiter(void 0, void 0, void 0, function* () {
-    const productQuery = new QueryBuilder_1.default(product_model_1.default.find(), query).filter().sort().paginate();
+    const productQuery = new QueryBuilder_1.default(product_model_1.default.find(), query)
+        .search(product_constant_1.productSearchableFields)
+        .filter();
     const result = productQuery.modelQuery;
     return result;
 });

@@ -20,7 +20,6 @@ const AppError_1 = __importDefault(require("../../errors/AppError"));
 const order_model_1 = require("./order.model");
 const user_model_1 = require("../user/user.model");
 const product_model_1 = __importDefault(require("../product/product.model"));
-// import { orderUtils } from './order.utils';
 const createOrderIntoDB = (payload) => __awaiter(void 0, void 0, void 0, function* () {
     const { user, product, quantity } = payload;
     const isUserExist = yield user_model_1.User.findById(user);
@@ -40,37 +39,18 @@ const createOrderIntoDB = (payload) => __awaiter(void 0, void 0, void 0, functio
     const result = yield order_model_1.Order.create(payload);
     if (result) {
         yield product_model_1.default.findByIdAndUpdate(product, [
-            {
-                $set: {
-                    quantity: { $subtract: ['$quantity', quantity] },
-                    inStock: {
-                        $gt: [{ $subtract: ['$quantity', quantity] }, 0],
+            { $set: { quantity: { $subtract: ['$quantity', quantity] }, inStock: { $gt: [{ $subtract: ['$quantity', quantity] }, 0],
                     },
                 },
             },
         ], { new: true });
     }
-    // payment integration
-    // const shurjopayPayload = {
-    //   amount:result.totalPrice,
-    //   order_id: result._id,
-    //   currency:'BDT',
-    //   customer_name:isUserExist.name,
-    //   customer_address:"Dhaka",
-    //   customer_phone:"017777777",
-    //   customer_city:"Old Dhaka",
-    //   client_ip
-    // }
-    //  const payment = await orderUtils.makePayment(shurjopayPayload)
-    return { result,
-        // payment
+    return { result
     };
 });
 const getAllOrdersFromDB = (query) => __awaiter(void 0, void 0, void 0, function* () {
     const orderQuery = new QueryBuilder_1.default(order_model_1.Order.find().populate('user').populate('product'), query)
-        .filter()
-        .sort()
-        .paginate();
+        .filter();
     const result = orderQuery.modelQuery;
     return result;
 });
@@ -118,6 +98,6 @@ exports.orderServices = {
     deleteOrderFromDB,
     getAllOrdersFromDB,
     getSpecificOrderFromDB,
-    getUserOrdersFromDB
+    getUserOrdersFromDB,
 };
 exports.OrderServices = { createOrderIntoDB };
