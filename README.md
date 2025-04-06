@@ -7,7 +7,6 @@
 ### `Live Server :` [CycleHouse Server](https://bicycle-store-assignment4-backend.vercel.app)
 ### `Client GitHub :` [GitHub Repo](https://github.com/smn-riaz/biCycle-store-frontend-4)
 ### `Backend GitHub :` [GitHub Repo](https://github.com/smn-riaz/biCycle-store-backend-4)
-### `Explantion Video :` [Google Drive](https://drive.google.com/file/d/1jE52FeYpczqRlrBVezZ7ZdmGqK5F8u7X/view?usp=drive_link)
 
 ![ccc](https://github.com/user-attachments/assets/8fb1c50b-5895-46a5-b2d3-b58f056ec0f5)
 
