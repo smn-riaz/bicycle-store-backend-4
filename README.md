@@ -96,7 +96,6 @@ CycleHouse is a responsive, full-stack e-commerce platform designed for bicycle 
 
 ### Setup Instructions
 
-1. Clone the repositories:
+1. Clone the repository:
    ```bash
-   git clone https://github.com/smn-riaz/cyclehouse-frontend
    git clone https://github.com/smn-riaz/cyclehouse-backend
