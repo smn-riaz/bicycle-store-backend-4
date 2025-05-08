@@ -1,4 +1,5 @@
-# 🚲 CycleHouse - Full-Stack E-commerce Platform for Bicycle Enthusiasts
+# 🚲 CycleHouse
+## Full-Stack E-commerce Platform for Bicycle Enthusiasts
 
 CycleHouse is a responsive, full-stack e-commerce platform designed for bicycle enthusiasts. It allows users to browse and buy bicycles with secure authentication, online payments, and an intuitive user interface. Built with the MERN stack, TypeScript, and Redux Toolkit, CycleHouse offers a dynamic search, advanced filtering, and an admin dashboard for managing inventory and orders.
 
